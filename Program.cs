@@ -1,5 +1,5 @@
 using Delivery.AppDbContext;
-using Delivery.Models.UserRoutes;
+using Delivery.UserRoutes;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,4 +1,8 @@
-namespace Delivery.Models.UserRoutes;
+using Delivery.Models.User.Request;
+using Delivery.Data;
+using Delivery.Models.Users;
+
+namespace Delivery.UserRoutes;
 
 public static class UserRoutes
 {
@@ -9,6 +13,14 @@ public static class UserRoutes
         UserRoutes.MapGet("/test", () =>
         {
             return Results.Ok("Hello, World!");
+        });
+
+        UserRoutes.MapGet("/Create", async (AddUserRequest request, AppDbContext context) =>
+        {
+            var user = new User(request.name, request.email, request.password);
+            await context.Users.AddAsync(user);
+            await context.SaveChangesAsync();
+
         });
     }
 }

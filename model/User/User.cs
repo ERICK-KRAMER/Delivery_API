@@ -1,4 +1,4 @@
-namespace Delivery.Models.User
+namespace Delivery.Models.Users
 {
     public class User
     {
