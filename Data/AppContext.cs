@@ -7,7 +7,6 @@ namespace Delivery.Data
 {
     public class AppContext : DbContext
     {
-
         DbSet<User> User { get; set; }
         DbSet<Product> Product { get; set; }
         DbSet<Order> Order { get; set; }
