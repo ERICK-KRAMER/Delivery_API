@@ -1,9 +1,11 @@
-using Delivery.UseRoutes;
+using Delivery.AppDbContext;
+using Delivery.Models.UserRoutes;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<AppDbContext>();
 
 var app = builder.Build();
 
