@@ -1,11 +1,7 @@
-using Delivery.AppDbContext;
-using Delivery.UserRoutes;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<AppDbContext>();
 
 var app = builder.Build();
 
@@ -16,7 +12,5 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-app.AppUserRoutes();
 
 app.Run();
