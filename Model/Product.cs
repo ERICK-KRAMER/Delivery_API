@@ -1,4 +1,4 @@
-namespace Delivery.Model.Product
+namespace Delivery.Models
 {
     public class Product
     {
@@ -8,5 +8,6 @@ namespace Delivery.Model.Product
         public decimal DiscountPercent { get; set; }
         public string? Description { get; set; }
         public string? Category { get; set; }
+        public ICollection<Order> Orders { get; set; } = new List<Order>();
     }
 }

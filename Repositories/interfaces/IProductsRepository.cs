@@ -1,5 +1,4 @@
-
-using Delivery.Model.Product;
+using Delivery.Models;
 
 namespace Delivery.Repository.Interface
 {

@@ -1,4 +1,4 @@
-namespace Delivery.Model.User
+namespace Delivery.Models
 {
     public class User
     {
@@ -6,6 +6,6 @@ namespace Delivery.Model.User
         public string? Name { get; set; }
         public string? Email { get; set; }
         public string? Password { get; set; }
-
+        public ICollection<Order> Orders { get; set; } = new List<Order>();
     }
 }

@@ -1,4 +1,4 @@
-using Delivery.Model.Order;
+using Delivery.Models;
 
 namespace Delivery.Repository.Interface
 {

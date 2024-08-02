@@ -1,7 +1,5 @@
+using Delivery.Models;
 using Microsoft.EntityFrameworkCore;
-using Delivery.Model.User;
-using Delivery.Model.Product;
-using Delivery.Model.Order;
 
 namespace Delivery.Data
 {
@@ -13,6 +11,19 @@ namespace Delivery.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Order>()
+               .HasOne<User>()
+               .WithMany(u => u.Orders)
+               .HasForeignKey(o => o.UserID);
+
+            modelBuilder.Entity<Order>()
+                .HasOne<Product>()
+                .WithMany(p => p.Orders)
+                .HasForeignKey(o => o.ProductID);
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -21,5 +32,6 @@ namespace Delivery.Data
             }
             base.OnConfiguring(optionsBuilder);
         }
+
     }
 }

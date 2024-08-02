@@ -1,5 +1,5 @@
+using Delivery.Models;
 using Microsoft.AspNetCore.Mvc;
-using Delivery.Model.User;
 
 namespace Delivery.Controller.UserController
 {
