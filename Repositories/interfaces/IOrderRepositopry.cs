@@ -8,5 +8,6 @@ namespace Delivery.Repository.Interface
         Task<Order?> GetOrderById(Guid id);
         Task<Order> CreateOrder(Order order);
         Task DeleteOrder(Guid id);
+        Task<Order?> GetOrderByUserId(Guid userId);
     }
 }

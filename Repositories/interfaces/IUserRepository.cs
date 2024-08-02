@@ -8,7 +8,7 @@ namespace Delivery.Repository.Interface
         Task<User?> GetUserById(Guid id);
         Task<User?> UserAlreadyExist(string Email);
         Task<User> AddUser(User user);
-        Task<User> UpdateUser(User user);
-        Task<bool> RemoveUser(Guid ID);
+        Task<User> UpdateUser(Guid id, User user);
+        Task<bool> RemoveUser(Guid id);
     }
 }
