@@ -31,9 +31,19 @@ namespace Delivery.Repository
 
         public async Task<User> AddUser(User user)
         {
-            _dbContext.Users.Add(user);
-            await _dbContext.SaveChangesAsync();
-            return user;
+            if (user.Email != null && user.Name != null && user.Password != null)
+            {
+                var userAlreadyExist = await UserAlreadyExist(user.Email);
+                if (userAlreadyExist != null)
+                {
+                    throw new InvalidOperationException("User already exists with this email.");
+                }
+
+                _dbContext.Users.Add(user);
+                await _dbContext.SaveChangesAsync();
+                return user;
+            }
+            throw new ArgumentException("User details are not complete.");
         }
 
         public async Task<User> UpdateUser(User user)
