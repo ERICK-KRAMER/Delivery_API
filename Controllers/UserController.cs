@@ -1,16 +1,50 @@
 using Delivery.Models;
+using Delivery.Repository.Interface;
 using Microsoft.AspNetCore.Mvc;
-
 namespace Delivery.Controller.UserController
 {
     [Route("[controller]")]
     [ApiController]
     public class UserController : ControllerBase
     {
-        [HttpGet]
-        public ActionResult<List<User>> GetAllUsers()
+        private readonly IUserRepository _userRepository;
+
+        public UserController(IUserRepository userRepository)
         {
-            return Ok("ok");
+            _userRepository = userRepository;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<User>>> GetAllUsers()
+        {
+            List<User> users = await _userRepository.GetAllUser();
+            return Ok(users);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<User>> GetUserById(Guid id)
+        {
+            User? user = await _userRepository.GetUserById(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(user);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<User>> CreateUser([FromBody] User user)
+        {
+            User createdUser = await _userRepository.AddUser(user);
+            return CreatedAtAction(nameof(GetUserById), new { id = createdUser.ID }, createdUser);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<bool>> RemoveUser(Guid id)
+        {
+            bool removedUser = await _userRepository.RemoveUser(id);
+            return Ok(removedUser);
         }
     }
 }
