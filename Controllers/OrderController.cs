@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Delivery.Controller
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class OrderController : ControllerBase
     {
         private readonly IOrderRepository _orderRepository;
@@ -40,7 +40,7 @@ namespace Delivery.Controller
             return CreatedAtAction(nameof(GetOrderByID), new { id = newOrder.ID }, newOrder);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("delete/{id}")]
         public async Task<ActionResult<bool>> RemoveOrder(Guid id)
         {
             var result = await _orderRepository.DeleteOrder(id);
@@ -51,7 +51,7 @@ namespace Delivery.Controller
             return Ok(result);
         }
 
-        [HttpGet("user/{userId}")]
+        [HttpGet("/{id}")]
         public async Task<ActionResult<Order>> GetOrderByUserId(Guid userId)
         {
             var order = await _orderRepository.GetOrderByUserId(userId);
