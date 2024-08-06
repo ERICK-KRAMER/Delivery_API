@@ -11,6 +11,7 @@ builder.Services.AddDbContext<AppDBContext>(options =>
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<ILoginRepository, LoginRepository>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
