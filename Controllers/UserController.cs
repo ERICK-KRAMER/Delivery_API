@@ -14,14 +14,14 @@ namespace Delivery.Controller.UserController
             _userRepository = userRepository;
         }
 
-        [HttpGet]
+        [HttpGet("product")]
         public async Task<ActionResult<List<User>>> GetAllUsers()
         {
             List<User> users = await _userRepository.GetAllUser();
             return Ok(users);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("product/{id}")]
         public async Task<ActionResult<User>> GetUserById(Guid id)
         {
             User? user = await _userRepository.GetUserById(id);
@@ -33,14 +33,14 @@ namespace Delivery.Controller.UserController
             return Ok(user);
         }
 
-        [HttpPost]
+        [HttpPost("product")]
         public async Task<ActionResult<User>> CreateUser([FromBody] User user)
         {
             User createdUser = await _userRepository.AddUser(user);
             return CreatedAtAction(nameof(GetUserById), new { id = createdUser.ID }, createdUser);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("product/{id}")]
         public async Task<ActionResult<bool>> RemoveUser(Guid id)
         {
             bool removedUser = await _userRepository.RemoveUser(id);

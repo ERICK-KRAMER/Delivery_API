@@ -18,14 +18,16 @@ namespace Delivery.Repository
             await _dbContext.SaveChangesAsync();
             return order;
         }
-        public async Task DeleteOrder(Guid id)
+        public async Task<bool> DeleteOrder(Guid id)
         {
             var order = await GetOrderById(id);
             if (order != null)
             {
                 _dbContext.Orders.Remove(order);
                 await _dbContext.SaveChangesAsync();
+                return true;
             }
+            return false;
         }
         public async Task<List<Order>> GetAllOrder()
         {
