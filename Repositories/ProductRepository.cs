@@ -21,14 +21,16 @@ namespace Delivery.Repository
             return product;
         }
 
-        public async Task DeleteProduct(Guid id)
+        public async Task<bool> DeleteProduct(Guid id)
         {
             var product = await GetProductById(id);
             if (product != null)
             {
                 _dbContext.Products.Remove(product);
                 await _dbContext.SaveChangesAsync();
+                return true;
             }
+            return false;
         }
 
         public async Task<List<Product>> GetAllProducts()

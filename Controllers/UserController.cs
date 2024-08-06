@@ -3,8 +3,8 @@ using Delivery.Repository.Interface;
 using Microsoft.AspNetCore.Mvc;
 namespace Delivery.Controller.UserController
 {
-    [Route("[controller]")]
     [ApiController]
+    [Route("[controller]")]
     public class UserController : ControllerBase
     {
         private readonly IUserRepository _userRepository;
@@ -45,6 +45,13 @@ namespace Delivery.Controller.UserController
         {
             bool removedUser = await _userRepository.RemoveUser(id);
             return Ok(removedUser);
+        }
+
+        [HttpPut("/update{id}")]
+        public async Task<ActionResult<User>> UpdateUser(Guid id, [FromBody] User user)
+        {
+            User updateUser = await _userRepository.UpdateUser(id, user);
+            return Ok(updateUser);
         }
     }
 }

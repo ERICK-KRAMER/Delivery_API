@@ -8,6 +8,6 @@ namespace Delivery.Repository.Interface
         Task<Product?> GetProductById(Guid id);
         Task<Product> AddProduct(Product product);
         Task<Product> UpdateProduct(Guid id, Product product);
-        Task DeleteProduct(Guid id);
+        Task<bool> DeleteProduct(Guid id);
     }
 }
